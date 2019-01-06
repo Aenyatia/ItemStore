@@ -34,5 +34,13 @@ namespace ItemStore.Api.Controllers
 
 			return Ok(result);
 		}
+
+		[HttpPost]
+		public async Task<IActionResult> Post(CreateItem command)
+		{
+			await _itemService.Create(command);
+
+			return Created(string.Empty, null);
+		}
 	}
 }

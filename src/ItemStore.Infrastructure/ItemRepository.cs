@@ -8,6 +8,7 @@ namespace ItemStore.Infrastructure
 	public class ItemRepository : IItemRepository
 	{
 		private readonly AppDbContext _context;
+		private static int Index = 10;
 
 		public ItemRepository(AppDbContext context)
 		{
@@ -22,6 +23,13 @@ namespace ItemStore.Infrastructure
 		public async Task<IEnumerable<Item>> GetAll()
 		{
 			return await _context.Items.ToListAsync();
+		}
+
+		public async Task Add(Item item)
+		{
+			item.Id = Index++;
+			await _context.Items.AddAsync(item);
+			await _context.SaveChangesAsync();
 		}
 	}
 }

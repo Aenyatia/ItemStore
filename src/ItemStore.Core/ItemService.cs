@@ -32,5 +32,11 @@ namespace ItemStore.Core
 				Name = i.Name
 			});
 		}
+
+		public async Task Create(CreateItem command)
+		{
+			var item = new Item { Name = command.Name };
+			await _itemRepository.Add(item);
+		}
 	}
 }

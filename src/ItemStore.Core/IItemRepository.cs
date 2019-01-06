@@ -7,5 +7,6 @@ namespace ItemStore.Core
 	{
 		Task<Item> GetItemById(int id);
 		Task<IEnumerable<Item>> GetAll();
+		Task Add(Item item);
 	}
 }
